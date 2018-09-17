@@ -8,7 +8,7 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.status(200).send('Welcome home to Easy Dev API!');
+    res.status(200).send('Home route');
 });
 
 
