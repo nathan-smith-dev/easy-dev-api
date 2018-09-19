@@ -1,5 +1,7 @@
 require('dotenv').config();
 require('./services/passport');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const app = require('express')();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -9,6 +11,16 @@ const logger = require('./logger');
 // logging
 app.use(morgan('tiny'));
 app.use(log4js.connectLogger(log4js.getLogger()));
+
+// Setting up passport
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 100,
+        keys: [process.env.COOKIE_KEY],
+    }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // middleware
 app.use(bodyParser.json());
