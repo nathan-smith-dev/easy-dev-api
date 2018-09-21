@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./services/passport');
+require('./services/db').connect();
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const app = require('express')();
