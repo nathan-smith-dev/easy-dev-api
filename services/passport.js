@@ -20,8 +20,10 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
         const user = await db.getUser(profile.id);
-        if (user) done(null, user);
-        else {
+        if (user) {
+            await db.loginUser(user.id);
+            done(null, user);
+        } else {
             const { id, emails, name: { givenName, familyName } } = profile;
             const newUser = await db.createUser(id, emails[0].value, givenName, familyName);
             done(null, newUser);

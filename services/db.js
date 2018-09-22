@@ -32,8 +32,18 @@ async function createUser(id, email, firstName, lastName) {
     return result.rows[0];
 }
 
+async function loginUser(id) {
+    const query = {
+        text: 'SELECT * FROM login_user($1)',
+        values: [id],
+    };
+
+    await client.query(query);
+}
+
 module.exports = {
     getUser,
     createUser,
+    loginUser,
     connect,
 };
