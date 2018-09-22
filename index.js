@@ -32,10 +32,6 @@ app.use(bodyParser.json());
 // routes
 require('./routes/authRoutes')(app);
 
-app.get('/', (req, res) => {
-    res.status(200).send('Home route');
-});
-
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
