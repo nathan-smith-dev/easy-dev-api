@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Home from '../../routes/Home/Home';
+import * as authActions from '../../actions/authActions';
 
 class App extends Component {
+  componentDidMount() { 
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -35,4 +41,4 @@ class PlaceHolder extends Component {
   }
 };
 
-export default App;
+export default connect(null, authActions)(App);
