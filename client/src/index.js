@@ -8,6 +8,10 @@ import './index.css';
 import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
+// TESTING - Remove
+import axios from 'axios';
+window.axios = axios;
+
 const initialState = {};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

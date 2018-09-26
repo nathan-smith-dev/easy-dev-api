@@ -9,6 +9,12 @@ function connect() {
     client.connect();
 }
 
+async function getUsers() {
+    const query = 'SELECT * FROM users;';
+    const result = await client.query(query);
+    return result.rows;
+}
+
 async function getUser(id) {
     const query = {
         text: 'SELECT * FROM get_user($1)',
@@ -43,6 +49,7 @@ async function loginUser(id) {
 
 module.exports = {
     getUser,
+    getUsers,
     createUser,
     loginUser,
     connect,
