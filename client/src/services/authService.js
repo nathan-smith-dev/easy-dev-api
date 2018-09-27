@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import axios from 'axios';
 import 'firebase/auth';
 
 const config = {
@@ -17,8 +18,10 @@ const provider = new firebase.auth.GoogleAuthProvider();
 auth.onAuthStateChanged(user => {
     if(user) {
         console.log(user);
+        axios.defaults.headers.common['x-auth'] = user.qa;
     } else {
         console.log('User is not defined');
+        axios.defaults.headers.common['x-auth'] = '';
     }
 });
 
