@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import './index.css';
 import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
+import './services/authService';
 
 // TESTING - Remove
 import axios from 'axios';

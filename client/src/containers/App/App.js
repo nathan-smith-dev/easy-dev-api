@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Home from '../../routes/Home/Home';
+import Home from '../../pages/Home/Home';
 import * as authActions from '../../actions/authActions';
 
 class App extends Component {
