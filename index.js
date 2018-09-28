@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const log4js = require('log4js');
 const path = require('path');
 const logger = require('./logger');
-const db = require('./services/db');
+const userRouter = require('./routes/usersRoutes');
 
 const app = express();
 
@@ -19,12 +19,8 @@ app.use(log4js.connectLogger(log4js.getLogger()));
 app.use(bodyParser.json());
 
 // routes
-// app.use('/auth', authRouter);
+app.use('/api/users', userRouter);
 
-app.get('/api/users', async (req, res) => {
-    const users = await db.getUsers();
-    res.status(200).send(users);
-});
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

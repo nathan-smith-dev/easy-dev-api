@@ -6,7 +6,7 @@ import * as authActions from '../../actions/authActions';
 
 class App extends Component {
   componentDidMount() { 
-    this.props.fetchUser();
+    // this.props.fetchUser();
   }
 
   render() {

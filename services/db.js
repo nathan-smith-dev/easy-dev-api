@@ -17,7 +17,7 @@ async function getUsers() {
 
 async function getUser(id) {
     const query = {
-        text: 'SELECT * FROM get_user($1)',
+        text: 'SELECT * FROM get_user($1);',
         values: [id],
     };
 
@@ -30,7 +30,7 @@ async function getUser(id) {
 
 async function createUser(id, email, firstName, lastName) {
     const query = {
-        text: 'SELECT * FROM create_user($1, $2, $3, $4)',
+        text: 'SELECT * FROM create_user($1, $2, $3, $4);',
         values: [id, email, firstName, lastName],
     };
 
@@ -40,7 +40,7 @@ async function createUser(id, email, firstName, lastName) {
 
 async function loginUser(id) {
     const query = {
-        text: 'SELECT * FROM login_user($1)',
+        text: 'SELECT * FROM login_user($1);',
         values: [id],
     };
 
