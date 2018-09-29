@@ -1,20 +1,23 @@
 import React from 'react';
 import { signInWithRedirect, signOut, getAuthToken } from '../../services/authService';
+import Container from '../../components/container';
+import Button from '../../components/button';
+import Header from '../../components/header';
 
 const home = (props) => {
     return (
-        <div>
-            <h3>Home Page</h3>
+        <Container>
+            <Header>Home Page</Header>
             <div>
-                <button onClick={() => signInWithRedirect()}>Login</button>
+                <Button onClick={() => signInWithRedirect()}>Login</Button>
             </div>
             <div>
-                <button onClick={() => signOut()}>Logout</button>
+                <Button onClick={() => signOut()}>Logout</Button>
             </div>
             <div>
-                <button onClick={() => getAuthToken().then(token => console.log(token))}>Get Auth Token</button>
+                <Button onClick={() => getAuthToken().then(token => console.log(token))}>Get Auth Token</Button>
             </div>
-        </div>
+        </Container>
     );
 }
 

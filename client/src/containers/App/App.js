@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Home from '../../pages/Home/Home';
 import * as authActions from '../../store/actions/authActions';
 
+import GradientStripe from '../../components/gradient-stripe';
+
 class App extends Component {
   componentDidMount() { 
     // this.props.fetchUser();
@@ -11,7 +13,8 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div>
+        <GradientStripe />
         <BrowserRouter>
           <div>
             <Route 
