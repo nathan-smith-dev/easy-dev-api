@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from '../../pages/Home/Home';
-import * as authActions from '../../actions/authActions';
+import * as authActions from '../../store/actions/authActions';
 
 class App extends Component {
   componentDidMount() { 

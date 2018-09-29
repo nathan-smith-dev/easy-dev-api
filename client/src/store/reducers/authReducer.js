@@ -1,4 +1,4 @@
-import { FETCH_USER } from '../actions/types';
+import { FETCH_USER, SET_USER } from '../actions/types';
 
 const initialState = {
     user: null
@@ -6,9 +6,9 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_USER:
+        case SET_USER:
             return {
-                user: action.payload || false
+                user: action.user
             };
         default:
             return state;

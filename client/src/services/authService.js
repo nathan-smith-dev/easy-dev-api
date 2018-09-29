@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import axios from 'axios';
+import store from '../store';
+import { setUser } from '../store/actions/authActions';
 import 'firebase/auth';
 
 const config = {
@@ -18,22 +20,21 @@ const provider = new firebase.auth.GoogleAuthProvider();
 auth.onAuthStateChanged(user => {
     if(user) {
         axios.defaults.headers.common['x-auth'] = user.qa;
-        loginUser(user.uid);
+        loginUser(user.uid, user.qa);
     } else {
         axios.defaults.headers.common['x-auth'] = '';
     }
 });
 
-async function loginUser(id) {
+async function loginUser(id, authToken) {
     try {
-        const user = await axios.get(`/api/users/${id}`);
-        if(user.data) { 
-            console.log(user);
-            console.log('Add existing user to redux'); // TODO
+        const user = (await axios.get(`/api/users/${id}`)).data;
+        if(user) { 
+            store.dispatch(setUser({ ...user, authToken }));
         }
         else {
-            const newUser = await axios.post('/api/users');
-            console.log('Add new user to redux'); // TODO
+            const newUser = (await axios.post('/api/users')).data;
+            store.dispatch(setUser({ ...newUser, authToken }));
         }
     } catch(err) {
         console.log(err.message); // TODO: global error handling on FE
