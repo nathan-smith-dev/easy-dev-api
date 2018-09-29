@@ -10,7 +10,7 @@ router.get('/', verifyTokenMiddleware, async (req, res) => {
 });
 
 router.post('/', verifyTokenMiddleware, async (req, res) => {
-    const result = Joi.validate(res.user, userSchema, { stripUnknown: true });
+    const result = Joi.validate(res.decodedToken, userSchema, { stripUnknown: true });
     if (result.error) return res.status(400).send('Bad user data.');
 
     const { uid, name, email } = result.value;
@@ -26,7 +26,7 @@ router.post('/', verifyTokenMiddleware, async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifyTokenMiddleware, async (req, res) => {
     const { id } = req.params;
     const user = await db.getUser(id);
     if (user) {
@@ -34,6 +34,12 @@ router.get('/:id', async (req, res) => {
     }
 
     return res.status(200).send(undefined);
+});
+
+router.put('/login', verifyTokenMiddleware, async (req, res) => {
+    const { uid } = res.decodedToken;
+    await db.loginUser(uid);
+    res.status(200).send();
 });
 
 module.exports = router;

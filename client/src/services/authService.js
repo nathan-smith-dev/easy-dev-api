@@ -30,6 +30,7 @@ async function loginUser(id, authToken) {
     try {
         const user = (await axios.get(`/api/users/${id}`)).data;
         if(user) { 
+            await axios.put(`/api/users/login`);
             store.dispatch(setUser({ ...user, authToken }));
         }
         else {

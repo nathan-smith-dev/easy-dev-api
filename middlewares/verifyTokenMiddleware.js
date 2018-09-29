@@ -4,7 +4,7 @@ async function verifyTokenMiddleware(req, res, next) {
     try {
         const decodedToken = await verifyIdToken(req.get('x-auth'));
         if (decodedToken) {
-            res.user = decodedToken;
+            res.decodedToken = decodedToken;
             next();
         } else {
             res.status(400).send('No authorization token present.');
