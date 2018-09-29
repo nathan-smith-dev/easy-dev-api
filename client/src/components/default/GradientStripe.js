@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PRIMARY_1, PRIMARY_2} from '../styles/colors';
+import { PRIMARY_1, PRIMARY_2} from '../../styles/colors';
 
 export default styled.div`
     height: 3px;

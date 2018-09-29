@@ -3,7 +3,7 @@ import {
     BREAKPOINT_XSMALL, 
     BREAKPOINT_SMALL, 
     BREAKPOINT_MEDIUM, 
-} from '../styles/breakpoints';
+} from '../../styles/breakpoints';
 
 export default styled.div`
     padding: 0 0.5rem;

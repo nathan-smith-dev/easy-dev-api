@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Home from '../../pages/Home/Home';
 import * as authActions from '../../store/actions/authActions';
 
-import GradientStripe from '../../components/gradient-stripe';
+import GradientStripe from '../../components/default/GradientStripe';
 
 class App extends Component {
   componentDidMount() { 

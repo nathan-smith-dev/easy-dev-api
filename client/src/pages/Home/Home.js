@@ -1,8 +1,8 @@
 import React from 'react';
 import { signInWithRedirect, signOut, getAuthToken } from '../../services/authService';
-import Container from '../../components/container';
-import Button from '../../components/button';
-import Header from '../../components/header';
+import Container from '../../components/default/Container';
+import Button from '../../components/default/Button';
+import Header from '../../components/default/Header';
 
 const home = (props) => {
     return (

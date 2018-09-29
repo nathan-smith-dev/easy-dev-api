@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LIGHT_GREY_1, DARK_1 } from '../styles/colors';
+import { LIGHT_GREY_1, DARK_1 } from '../../styles/colors';
 
 export default styled.button`
     color: ${DARK_1};
