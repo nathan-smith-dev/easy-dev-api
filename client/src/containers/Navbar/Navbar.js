@@ -6,10 +6,11 @@ import ShadowSmall from '../../components/default/shadows/ShadowSmall';
 import NavItemsList from './NavItemsList/NavItemsList';
 import NavbarWrapper from './NavbarWrapper/NavbarWrapper';
 import NavbarLogo from './NavbarLogo/NavbarLogo';
+import SideMenu from './SideMenu/SideMenu';
+import { WHITE, PRIMARY_1 } from '../../styles/colors';
 
 class Navbar extends Component {
     static propTypes = {
-        sidebar: PropTypes.element.isRequired,
         logo: PropTypes.string.isRequired,
         navItems: PropTypes.arrayOf(PropTypes.shape({
             text: PropTypes.string.isRequired, 
@@ -39,14 +40,28 @@ class Navbar extends Component {
 
     renderNavItems = (navItems) => {
         const { width } = this.state;
-        const { breakpoint, sidebar } = this.props;
-        return width > breakpoint ? <NavItemsList navItems={navItems} /> : sidebar
+        const { breakpoint } = this.props;
+
+        const sideMenu = (
+            <SideMenu 
+              drawerColor={WHITE}
+              color={PRIMARY_1}
+              navItems={navItems}
+            />
+        );
+      
+
+        return width > breakpoint ? <NavItemsList navItems={navItems} /> : sideMenu;
     }
 
     render() {
         const { navItems, history, logo } = this.props;
-        const navItemsWithRouting = navItems.map(({ text, path }) => (
-            { text, onClick: () => history.push(path),  active: this.isActive(path) }
+        const navItemsWithRouting = navItems.map(({ text, path, onClick }) => (
+            { 
+                text, 
+                onClick: onClick ? onClick : () => history.push(path),  
+                active: this.isActive(path) 
+            }
         ));
 
         return (

@@ -4,6 +4,7 @@ import { DARK_1, MEDIUM_GREY_1, PRIMARY_1 } from '../../../styles/colors';
 export default styled.div`
     transition: font-size .1s ease-in-out;
     font-size: ${props => props.active ? '1rem' : '.9rem'};
+    font-weight: ${props => props.active ? 700 : 400};
     color: ${props => props.active ? PRIMARY_1 : MEDIUM_GREY_1};
     :hover {
         cursor: ${props => props.active ? null : 'pointer'};

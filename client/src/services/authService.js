@@ -44,4 +44,7 @@ async function loginUser(id, authToken) {
 
 export const getAuthToken = () => auth.currentUser.getIdToken();
 export const signInWithRedirect = () => auth.signInWithRedirect(provider);
-export const signOut = () => auth.signOut();
+export const signOut = () => {
+    auth.signOut();
+    store.dispatch(setUser(null));
+};

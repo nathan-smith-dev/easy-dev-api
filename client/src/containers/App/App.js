@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { signInWithRedirect, signOut } from '../../services/authService';
 import Home from '../../pages/Home/Home';
 import * as authActions from '../../store/actions/authActions';
 import GradientStripe from '../../components/default/GradientStripe';
@@ -9,12 +10,23 @@ import appLogo from '../../assets/temp-logo.png';
 
 class App extends Component {
 
-  render() {
-    const navItems = [
+  getNavItems = () => {
+    const { user } = this.props;
+    const loginOrLogout = user ? 
+      { text: 'Logout', path: '/logout', onClick: signOut } 
+      : { text: 'Login', path: '/login', onClick: signInWithRedirect };
+
+    return [
       { text: 'Item 1', path: '/item1' },
       { text: 'Item 2', path: '/item2' },
       { text: 'Item 3', path: '/item3' },
+      loginOrLogout
     ];
+
+  }
+
+  render() {
+    const navItems = this.getNavItems();
 
     return (
       <div>
@@ -23,7 +35,6 @@ class App extends Component {
           <div>
             <Navbar 
               breakpoint={768} 
-              sidebar={<div>Sidebar</div>}
               navItems={navItems}
               logo={appLogo}
             />
@@ -54,4 +65,10 @@ class PlaceHolder extends Component {
   }
 };
 
-export default connect(null, authActions)(App);
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  };
+};
+
+export default connect(mapStateToProps, authActions)(App);
